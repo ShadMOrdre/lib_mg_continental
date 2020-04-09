@@ -404,7 +404,11 @@ end
 			r_biome = r_biome .. b_riverbed_depth .. "|"
 
 			if desc.node_cave_liquid and desc.node_cave_liquid ~= ""  then
-				b_cave_liquid = minetest.get_content_id(desc.node_cave_liquid)
+				local node_cave_liquid = desc.node_cave_liquid
+				if type(node_cave_liquid) == "table" then -- Workaround to deal with tables
+					node_cave_liquid = node_cave_liquid[1]
+				end
+				b_cave_liquid = minetest.get_content_id(node_cave_liquid)
 			else
 				b_cave_liquid = minetest.get_content_id("default:lava_source")
 			end
