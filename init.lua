@@ -29,7 +29,7 @@ minetest.log(S("[MOD] lib_mg_continental:  Legal Info: Copyright ") .. S(lib_mg_
 minetest.log(S("[MOD] lib_mg_continental:  License: ") .. S(lib_mg_continental.license) .. "")
 
 
-	lib_mg_continental.voxel_mg_voronoi = minetest.setting_get("lib_mg_continental_enable") or true				--true
+	lib_mg_continental.voxel_mg_voronoi = minetest.setting_get("lib_mg_continental_enable") or false				--true
 
 
 -- switch for debugging
@@ -37,11 +37,15 @@ minetest.log(S("[MOD] lib_mg_continental:  License: ") .. S(lib_mg_continental.l
 
 
 
-	lib_mg_continental_max_height_difference = 4
-	lib_mg_continental_half_map_chunk_size = 40
-	lib_mg_continental_quarter_map_chunk_size = 20
+	lib_mg_continental.max_height_difference = 4
+	lib_mg_continental.half_map_chunk_size = 40
+	lib_mg_continental.quarter_map_chunk_size = 20
 
 
+
+	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_io.lua")
+	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_utils.lua")
+	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_voronoi.lua")
 
 	if lib_mg_continental.voxel_mg_voronoi == true then
 		dofile(lib_mg_continental.path_mod.."/lib_mg_continental_voxel.lua")					--WORKING MAPGEN with and without biomes
