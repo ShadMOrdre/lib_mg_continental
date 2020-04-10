@@ -9,29 +9,27 @@ minetest.set_mapgen_setting('flags','nolight',true)
 local mg_map_view = false
 
 
-local c_desertsand	= minetest.get_content_id("lib_materials:sand_desert")
-local c_desertsandstone	= minetest.get_content_id("lib_materials:stone_sandstone_desert")
-local c_desertstone	= minetest.get_content_id("lib_materials:stone_desert")
-local c_sand		= minetest.get_content_id("lib_materials:sand")
-local c_sandstone	= minetest.get_content_id("lib_materials:stone_sandstone")
-local c_stone		= minetest.get_content_id("lib_materials:stone")
-local c_brick		= minetest.get_content_id("lib_materials:stone_brick")
-local c_block		= minetest.get_content_id("lib_materials:stone_block")
-local c_desertstoneblock= minetest.get_content_id("lib_materials:stone_desert_block")
-local c_desertstonebrick= minetest.get_content_id("lib_materials:stone_desert_brick")
-local c_obsidian	= minetest.get_content_id("lib_materials:stone_obsidian")
-local c_dirt		= minetest.get_content_id("lib_materials:dirt")
-local c_dirtgrass	= minetest.get_content_id("lib_materials:dirt_with_grass")
-local c_dirtdrygrass	= minetest.get_content_id("lib_materials:dirt_with_grass_dry")
-local c_top		= minetest.get_content_id("lib_materials:dirt_with_grass")
-local c_coniferous	= minetest.get_content_id("lib_materials:litter_coniferous")
-local c_rainforest	= minetest.get_content_id("lib_materials:litter_rainforest")
-local c_snow		= minetest.get_content_id("lib_materials:dirt_with_snow")
-local c_water		= minetest.get_content_id("lib_materials:liquid_water_source")
-local c_river		= minetest.get_content_id("lib_materials:liquid_water_river_source")
-local c_muddy		= minetest.get_content_id("lib_materials:liquid_water_river_muddy_source")
-local c_swamp		= minetest.get_content_id("lib_materials:liquid_water_swamp_source")
-local c_tree		= minetest.get_content_id("lib_ecology:tree_default_trunk")
+local c_desertsand	= minetest.get_content_id("default:desert_sand")		--minetest.get_content_id("lib_materials:sand_desert")
+local c_desertsandstone	= minetest.get_content_id("default:desert_sandstone")		--minetest.get_content_id("lib_materials:stone_sandstone_desert")
+local c_desertstone	= minetest.get_content_id("default:desert_stone")		--minetest.get_content_id("lib_materials:stone_desert")
+local c_sand		= minetest.get_content_id("default:sand")			--minetest.get_content_id("lib_materials:sand")
+local c_sandstone	= minetest.get_content_id("default:sandstone")			--minetest.get_content_id("lib_materials:stone_sandstone")
+local c_stone		= minetest.get_content_id("default:stone")			--minetest.get_content_id("lib_materials:stone")
+local c_brick		= minetest.get_content_id("default:stonebrick")			--minetest.get_content_id("lib_materials:stone_brick")
+local c_block		= minetest.get_content_id("default:stone_block")		--minetest.get_content_id("lib_materials:stone_block")
+local c_desertstoneblock= minetest.get_content_id("default:desert_stone_block")		--minetest.get_content_id("lib_materials:stone_desert_block")
+local c_desertstonebrick= minetest.get_content_id("default:desert_stonebrick")		--minetest.get_content_id("lib_materials:stone_desert_brick")
+local c_obsidian	= minetest.get_content_id("default:obsidian")			--minetest.get_content_id("lib_materials:stone_obsidian")
+local c_dirt		= minetest.get_content_id("default:dirt")			--minetest.get_content_id("lib_materials:dirt")
+local c_dirtgrass	= minetest.get_content_id("default:dirt_with_grass")		--minetest.get_content_id("lib_materials:dirt_with_grass")
+local c_dirtdrygrass	= minetest.get_content_id("default:dirt_with_dry_grass")	--minetest.get_content_id("lib_materials:dirt_with_grass_dry")
+local c_top		= minetest.get_content_id("default:dirt_with_grass")		--minetest.get_content_id("lib_materials:dirt_with_grass")
+local c_coniferous	= minetest.get_content_id("default:coniferous_litter")		--minetest.get_content_id("lib_materials:litter_coniferous")
+local c_rainforest	= minetest.get_content_id("default:rainforest_litter")		--minetest.get_content_id("lib_materials:litter_rainforest")
+local c_snow		= minetest.get_content_id("default:snow")			--minetest.get_content_id("lib_materials:dirt_with_snow")
+local c_water		= minetest.get_content_id("default:water_source")		--minetest.get_content_id("lib_materials:liquid_water_source")
+local c_river		= minetest.get_content_id("default:river_water_source")		--minetest.get_content_id("lib_materials:liquid_water_river_source")
+local c_tree		= minetest.get_content_id("default:tree")			--minetest.get_content_id("lib_ecology:tree_default_trunk")
 local c_air		= minetest.get_content_id("air")
 local c_ignore		= minetest.get_content_id("ignore")
 
@@ -64,7 +62,7 @@ local sqrt  = math.sqrt
 local floor = math.floor
 
 local convex = false
-local mult = lib_materials.mapgen_scale_factor or 8
+local mult = 8			--lib_materials.mapgen_scale_factor or 8
 
 local mg_golden_ratio = ((1 + (5^0.5)) * 0.5)
 
@@ -89,28 +87,6 @@ local np_cliffs = {
 	lacunarity = 2.11,
 --	flags = "absvalue"
 }
---[[
-local np_terrain = {
-	offset = -4,
-	scale = 50,
-	seed = 5934,
-	spread = {x = 2400, y = 2400, z = 2400},
-	octaves = 8,
-	persist = 0.2,
-	lacunarity = 2.11,
-	--flags = "defaults"
-}
-local np_cliffs = {
-	offset = -0.4,					
-	scale = 1,
-	spread = {x = 600, y =600, z = 600},
-	seed = 78901,
-	octaves = 8,
-	persist = 0.2,
-	lacunarity = 2.11,
---	flags = "absvalue"
-}
---]]
 local np_heat = {
 	flags = "defaults",
 	lacunarity = 2,
