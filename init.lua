@@ -29,19 +29,19 @@ minetest.log(S("[MOD] lib_mg_continental:  Legal Info: Copyright ") .. S(lib_mg_
 minetest.log(S("[MOD] lib_mg_continental:  License: ") .. S(lib_mg_continental.license) .. "")
 
 
-	lib_mg_continental.voxel_mg_voronoi = minetest.setting_get("lib_mg_continental_enable") or false				--true
+	lib_mg_continental.voxel_mg_voronoi = minetest.setting_get("lib_mg_continental_enable") or true				--true
 
 
 -- switch for debugging
 	lib_mg_continental.debug = false
 
-
+	--"full", "lite", "dev"
+	lib_mg_continental.mode = "full"
+	lib_mg_continental.nodes = "lib_materials"		--"default"
 
 	lib_mg_continental.max_height_difference = 4
 	lib_mg_continental.half_map_chunk_size = 40
 	lib_mg_continental.quarter_map_chunk_size = 20
-
-
 
 	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_io.lua")
 	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_utils.lua")
