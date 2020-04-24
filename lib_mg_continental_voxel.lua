@@ -1849,7 +1849,8 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				--local vterrain = (t_mount - t_cont) - (base_max * 2) - (base_min * 2)
 				local vterrain = (t_mount - t_cont)
 
-				theight = base_min + vterrain
+				theight = vterrain
+				--theight = base_min + vterrain
 				--theight = nterrain + vterrain
 				--theight = lib_mg_continental.get_terrain_height_hills_adjustable_shelf(nterrain,vterrain,ncliff,(n_shelf + (n_shelf / mg_golden_ratio))) - 2
 				--theight = lib_mg_continental.get_terrain_height_hills_adjustable_shelf(nterrain + vterrain,vterrain,ncliff,(n_shelf + (n_shelf / mg_golden_ratio))) - 2
