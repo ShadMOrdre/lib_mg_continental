@@ -1841,10 +1841,10 @@ minetest.register_on_generated(function(minp, maxp, seed)
 				local ccontinental = pcontinental + lib_mg_continental.get_terrain_height_shelf(c_cdist) * v_cscale
 				local cmountain = pmountain + lib_mg_continental.get_terrain_height_shelf(c_rdist) * v_mscale
 
-				--local t_cont = (base_max * 0.5) - lib_mg_continental.get_terrain_height_shelf(ccontinental)
-				local t_cont = base_max - lib_mg_continental.get_terrain_height_shelf(ccontinental)
-				--local t_mount = (base_min * 0.5) + lib_mg_continental.get_terrain_height_shelf(cmountain)
-				local t_mount = base_min + lib_mg_continental.get_terrain_height_shelf(cmountain)
+				local t_cont = (base_max * 0.5) - lib_mg_continental.get_terrain_height_shelf(ccontinental)
+				--local t_cont = base_max - lib_mg_continental.get_terrain_height_shelf(ccontinental)
+				local t_mount = (base_min * 0.5) + lib_mg_continental.get_terrain_height_shelf(cmountain)
+				--local t_mount = base_min + lib_mg_continental.get_terrain_height_shelf(cmountain)
 
 				--local vterrain = (t_mount - t_cont) - (base_max * 2) - (base_min * 2)
 				local vterrain = (t_mount - t_cont)
