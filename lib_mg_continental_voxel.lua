@@ -6,14 +6,14 @@ minetest.set_mapgen_setting('flags','nolight',true)
 
 --local storage = minetest.get_mod_storage()
 
-if lib_mg_continental.nodes = "default" then
+if lib_mg_continental.nodes == "default" then
 	local c_sand		= minetest.get_content_id("default:sand")
 	local c_stone		= minetest.get_content_id("default:stone")
 	local c_dirt		= minetest.get_content_id("default:dirt")
 	local c_dirtgrass	= minetest.get_content_id("default:dirt_with_grass")
 	local c_dirtgreengrass	= minetest.get_content_id("default:dirt_with_grass")
 	local c_water		= minetest.get_content_id("default:water_source")
-elseif lib_mg_continental.nodes = "lib_materials" then
+elseif lib_mg_continental.nodes == "lib_materials" then
 	local c_desertsand	= minetest.get_content_id("lib_materials:sand_desert")
 	local c_desertsandstone	= minetest.get_content_id("lib_materials:stone_sandstone_desert")
 	local c_desertstone	= minetest.get_content_id("lib_materials:stone_desert")
