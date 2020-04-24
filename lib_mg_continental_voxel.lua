@@ -64,11 +64,11 @@ local map_noise_scale = map_tectonic_scale * map_noise_scale_multiplier			--10 *
 --]]
 
 local voronoi_type = "recursive"     --"single" or "recursive"
-local voronoi_cells = 2197
-local voronoi_recursion_1 = 13
-local voronoi_recursion_2 = 13
-local voronoi_recursion_3 = 13
-local voronoi_scaled = false
+local voronoi_cells = 1331
+local voronoi_recursion_1 = 11
+local voronoi_recursion_2 = 11
+local voronoi_recursion_3 = 11
+local voronoi_scaled = true
 
 local heightmap_base = 5
 local noisemap_base = 7
