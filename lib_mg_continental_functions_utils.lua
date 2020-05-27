@@ -4,6 +4,13 @@
 --local shelf_thresh = lib_mg_continental.shelf_thresh
 --local cliffs_thresh = lib_mg_continental.cliffs_thresh
 
+
+local abs   = math.abs
+local max   = math.max
+local sqrt  = math.sqrt
+local floor = math.floor
+
+
 function lib_mg_continental.get_terrain_height_shelf(theight)
 		-- parabolic gradient
 	if theight > 0 and theight < lib_mg_continental.shelf_thresh then
@@ -53,4 +60,59 @@ end
 function lib_mg_continental.get_midpoint(a,b)						--get_midpoint(a,b)
 	return ((a.x+b.x) * 0.5), ((a.y+b.y) * 0.5)					--returns the midpoint between two points
 end
+
+local function get_2d_triangulation(a,b,c)					--get_2d_triangulation(a,b,c)
+	return ((a.x+b.x+c.x)/3), ((a.y+b.y+c.y)/3)				--returns the triangulated point between three points (average pos)
+end
+
+local function get_3d_triangulation(a,b,c)					--get_3d_triangulation(a,b,c)
+	return ((a.x+b.x+c.x)/3), ((a.y+b.y+c.y)/3), ((a.z+b.z+c.z)/3)		--returns the 3D triangulated point between three points (average pos)
+end
+
+
+
+
+local function lerp(noise_a, noise_b, n_mod)
+	return noise_a * (1 - n_mod) + noise_b * n_mod
+end
+
+local function steps(noise, h)
+	local w = math.abs(noise)				--n_base
+	local k = math.floor(h / w)
+	local f = (h - k * w) / w
+	local s = math.min(2 * f, 1.0)
+	return (k + s) * w
+end
+
+local function bias(noise, bias)
+	return (noise / ((((1.0 / bias) - 2.0) * (1.0 - noise)) + 1.0))
+end
+
+local function gain(noise, gain)
+	if noise < 0.5 then
+		return bias(noise * 2.0, gain) / 2.0
+	else
+		return bias(noise * 2.0 - 1.0, 1.0 - gain) / 2.0 + 0.5
+	end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

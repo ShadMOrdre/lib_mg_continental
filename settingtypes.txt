@@ -3,6 +3,6 @@
 
 
 #Use dev mapgen.
-lib_mg_continental_enable (Enable mapgen.  true / false) bool true
+lib_mg_continental_enable (Enable mapgen.  true / false) bool false
 
 
