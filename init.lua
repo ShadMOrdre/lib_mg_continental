@@ -5,7 +5,7 @@ lib_mg_continental.ver_max = 0
 lib_mg_continental.ver_min = 1
 lib_mg_continental.ver_rev = 0
 lib_mg_continental.ver_str = lib_mg_continental.ver_max .. "." .. lib_mg_continental.ver_min .. "." .. lib_mg_continental.ver_rev
-lib_mg_continental.authorship = "ShadMOrdre, paramat, Termos, burli, Gael-de-Sailly, duane-r, and others"
+lib_mg_continental.authorship = "ShadMOrdre.  Additional credits to Termos' Islands mod; Gael-de-Sailleys' Valleys; duane-r Valleys_c, burli mapgen, and paramats' mapgens"
 lib_mg_continental.license = "LGLv2.1"
 lib_mg_continental.copyright = "2019"
 lib_mg_continental.path_mod = minetest.get_modpath(minetest.get_current_modname())
@@ -37,20 +37,22 @@ minetest.log(S("[MOD] lib_mg_continental:  License: ") .. S(lib_mg_continental.l
 	--"full", "lite", "dev"
 	lib_mg_continental.mode = "full"
 	lib_mg_continental.nodes = "lib_materials"		--"default"
+	lib_mg_continental.flat = false
 
 	lib_mg_continental.max_height_difference = 4
 	lib_mg_continental.half_map_chunk_size = 40
 	lib_mg_continental.quarter_map_chunk_size = 20
 
-	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_io.lua")
-	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_utils.lua")
-	--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_functions_voronoi.lua")
+	dofile(lib_mg_continental.path_mod.."/lib_mg_continental_config.lua")
+	dofile(lib_mg_continental.path_mod.."/src/lib_mg_continental_functions_io.lua")
+	dofile(lib_mg_continental.path_mod.."/src/lib_mg_continental_functions.lua")
+	dofile(lib_mg_continental.path_mod.."/src/lib_mg_continental_biomes.lua")
+	dofile(lib_mg_continental.path_mod.."/src/lib_mg_continental_functions_voronoi.lua")
 
 	dofile(lib_mg_continental.path_mod.."/lib_mg_continental_schems.lua")
 
 	if lib_mg_continental.voxel_mg_voronoi == true then
-		dofile(lib_mg_continental.path_mod.."/lib_mg_continental_voxel.lua")					--WORKING MAPGEN with and without biomes
-		--dofile(lib_mg_continental.path_mod.."/lib_mg_continental_noise.lua")					--WORKING MAPGEN with and without biomes
+		dofile(lib_mg_continental.path_mod.."/lib_mg_continental_mapgen.lua")					--WORKING MAPGEN with and without biomes
 	end
 
 
