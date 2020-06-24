@@ -19,7 +19,7 @@ function lib_mg_continental.load(pfilename)
 			return table
 		end
 	end
-	--return {}
+
 	return nil
 end
 
@@ -47,7 +47,24 @@ function lib_mg_continental.load_csv(separator, path)
 			return t
 		end
 	end
-	--return {}
+
+	return nil
+end
+
+function lib_mg_continental.load_defaults_csv(separator, path)
+	local file = io.open(lib_mg_continental.path_mod.."/sets/"..path, "r")
+	if file then
+		local t = {}
+		for line in file:lines() do
+			if line:sub(1,1) ~= "#" and line:find("[^%"..separator.."% ]") then
+				table.insert(t, line:split(separator, true))
+			end
+		end
+		if type(t) == "table" then
+			return t
+		end
+	end
+
 	return nil
 end
 
