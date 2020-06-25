@@ -105,8 +105,8 @@ local base_height = lib_mg_continental.mg_base_height
 		local this_dist
 		local t_x
 		local t_z
-		local edge = {}
-		--local edge = ""
+		--local edge = {}
+		local edge = ""
 	
 		for i, point in ipairs(lib_mg_continental.points) do
 	
@@ -126,8 +126,8 @@ local base_height = lib_mg_continental.mg_base_height
 					elseif last_dist == this_dist then
 						closest_cell_idx = last_closest_idx
 						closest_cell_dist = this_dist
-						edge[i] = last_closest_idx
-						--edge = tostring("" .. i .. "-" .. last_closest_idx .. "")
+						--edge[i] = last_closest_idx
+						edge = tostring("" .. i .. "-" .. last_closest_idx .. "")
 					end
 				else
 					closest_cell_idx = i
