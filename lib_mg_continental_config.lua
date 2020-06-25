@@ -6,6 +6,7 @@
 --##
 
 	--##	Available choices are "flat", "all", "noise", "voronoi",
+
 	lib_mg_continental.mg_type = "voronoi"
 
 	lib_mg_continental.mg_voronoi_defaults = false
