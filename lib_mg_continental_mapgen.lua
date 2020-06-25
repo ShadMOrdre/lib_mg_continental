@@ -201,8 +201,8 @@ local C = lib_mg_continental.C
 				local tedge = 0
 
 				local t_y = 1
-				local velevation
-				local nelevation
+				--local velevation
+				--local nelevation
 
 				if lib_mg_continental.mg_type == "voronoi" then
 					local c_idx, c_dist, c_rise, c_run, c_edge = lib_mg_continental.get_nearest_cell({x = x, z = z}, dist_metric, 3)
@@ -210,18 +210,18 @@ local C = lib_mg_continental.C
 					local m_idx, m_dist, m_rise, m_run, m_edge = lib_mg_continental.get_nearest_cell({x = x, z = z}, dist_metric, 1)
 
 					if (c_edge ~= "") then
-						t_edge[c_idx] = c_edge
-						--t_edge = c_edge
+						--t_edge[c_idx] = c_edge
+						t_edge = c_edge
 						cedge = 1
 					end
 					if (p_edge ~= "") then
-						t_edge[p_idx] = p_edge
-						--t_edge = p_edge
+						--t_edge[p_idx] = p_edge
+						t_edge = p_edge
 						pedge = 2
 					end
 					if (m_edge ~= "") then
-						t_edge[m_idx] = m_edge
-						--t_edge = m_edge
+						--t_edge[m_idx] = m_edge
+						t_edge = m_edge
 						medge = 4
 					end
 					tedge = cedge + pedge + medge
@@ -231,27 +231,30 @@ local C = lib_mg_continental.C
 					local ccontinental = (c_dist * v_mscale)
 					local vcontinental = (mcontinental + pcontinental + ccontinental)
 
-					local vterrain = (base_rng - vcontinental)
-					local vheight = ((base_max - vcontinental) * 0.01)
+					local ncliff = isln_cliffs[z-minp.z+1][x-minp.x+1]
 
-					velevation = lib_mg_continental.get_terrain_height_hills(vterrain,vheight)
+					local vterrain = (base_rng - vcontinental)
+					local vheight = ((base_max - vcontinental) * 0.0125)
+
+					local velevation = lib_mg_continental.get_terrain_height_hills(vterrain,vheight)
 					--velevation = vterrain
 
-					t_y = lib_mg_continental.get_terrain_height_cliffs((velevation),ncliff)
-					--t_y = vterrain
+					--t_y = lib_mg_continental.get_terrain_height(vterrain,vheight,ncliff)
+					--t_y = lib_mg_continental.get_terrain_height_cliffs(velevation,ncliff)
+					t_y = velevation
 
 				end
 
 				if lib_mg_continental.mg_type == "noise" then 
 					local nterrain = isln_terrain[z-minp.z+1][x-minp.x+1]
-					local nheight = nterrain * 0.01
+					local nheight = nterrain * 0.0125
 					local ncliff = isln_cliffs[z-minp.z+1][x-minp.x+1]
 
-					nelevation = lib_mg_continental.get_terrain_height_hills(nterrain,nheight)
+					local nelevation = lib_mg_continental.get_terrain_height_hills(nterrain,nheight)
 
-					t_y = lib_mg_continental.get_terrain_height(nelevation,nheight,ncliff)
+					--t_y = lib_mg_continental.get_terrain_height(nelevation,nheight,ncliff)
 					--t_y = lib_mg_continental.get_terrain_height_cliffs((nelevation),ncliff)
-					--t_y = nelevation
+					t_y = nelevation
 				end
 	
 				if lib_mg_continental.mg_type == "all" then
@@ -260,18 +263,18 @@ local C = lib_mg_continental.C
 					local m_idx, m_dist, m_rise, m_run, m_edge = lib_mg_continental.get_nearest_cell({x = x, z = z}, dist_metric, 1)
 
 					if (c_edge ~= "") then
-						t_edge[c_idx] = c_edge
-						--t_edge = c_edge
+						--t_edge[c_idx] = c_edge
+						t_edge = c_edge
 						cedge = 1
 					end
 					if (p_edge ~= "") then
-						t_edge[p_idx] = p_edge
-						--t_edge = p_edge
+						--t_edge[p_idx] = p_edge
+						t_edge = p_edge
 						pedge = 2
 					end
 					if (m_edge ~= "") then
-						t_edge[m_idx] = m_edge
-						--t_edge = m_edge
+						--t_edge[m_idx] = m_edge
+						t_edge = m_edge
 						medge = 4
 					end
 					tedge = cedge + pedge + medge
@@ -282,15 +285,15 @@ local C = lib_mg_continental.C
 					local vcontinental = (mcontinental + pcontinental + ccontinental)
 
 					local vterrain = (base_rng - vcontinental)
-					local vheight = ((base_max - vcontinental) * 0.01)
+					local vheight = ((base_max - vcontinental) * 0.0125)
 
 					local nterrain = isln_terrain[z-minp.z+1][x-minp.x+1]
-					local nheight = nterrain * 0.01
+					local nheight = nterrain * 0.0125
 					local ncliff = isln_cliffs[z-minp.z+1][x-minp.x+1]
 
-					nelevation = lib_mg_continental.get_terrain_height(nterrain,nheight,ncliff)
+					local nelevation = lib_mg_continental.get_terrain_height(nterrain,nheight,ncliff)
 					--nelevation = lib_mg_continental.get_terrain_height_hills(nterrain,nheight)
-					velevation = lib_mg_continental.get_terrain_height_hills(vterrain,vheight)
+					local velevation = lib_mg_continental.get_terrain_height_hills(vterrain,vheight)
 
 					t_y = lib_mg_continental.get_terrain_height_cliffs((velevation + nelevation),ncliff)
 					--t_y = (velevation + nelevation)
@@ -367,8 +370,8 @@ local C = lib_mg_continental.C
 					--if t_edge  ~= "" then
 					--	c_top = c_obsidian
 					--end
-					--if t_edge[1] ~= "" then
-					if t_edge[1] then
+					--if t_edge[1] then
+					if t_edge ~= "" then
 						if tedge == 1 then
 							t_top = c_stone
 						elseif tedge == 2 then

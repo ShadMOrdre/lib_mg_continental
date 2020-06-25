@@ -6,19 +6,19 @@
 --##
 
 	--##	Available choices are "flat", "all", "noise", "voronoi",
-	lib_mg_continental.mg_type = "noise"
+	lib_mg_continental.mg_type = "voronoi"
 
 	lib_mg_continental.mg_voronoi_defaults = false
 
-	lib_mg_continental.mg_distance_metric = "cm"
+	lib_mg_continental.mg_distance_metric = "em"
 
-	lib_mg_continental.mg_world_scale = 1
+	lib_mg_continental.mg_world_scale = 0.1
 
 	lib_mg_continental.mg_biome_scale = lib_mg_continental.mg_world_scale
 
 	lib_mg_continental.mg_noise_spread = 2400
 	lib_mg_continental.mg_noise_scale = (lib_mg_continental.mg_noise_spread * 0.1) * 0.25
-	lib_mg_continental.mg_noise_octaves = 5
+	lib_mg_continental.mg_noise_octaves = 8
 	lib_mg_continental.mg_noise_persist = 0.5
 
 	lib_mg_continental.mg_base_height = (lib_mg_continental.mg_noise_spread * 0.1) * lib_mg_continental.mg_world_scale
@@ -32,15 +32,15 @@
 --##		persist		0.5	0.5	0.5
 --##
 	
-	--if lib_mg_continental.mg_world_scale < 1 then
-	--	if lib_mg_continental.mg_world_scale >= 0.1 then
-	--		lib_mg_continental.mg_noise_octaves = 5
-	--		lib_mg_continental.mg_noise_persist = 0.5
-	--	else
-	--		lib_mg_continental.mg_noise_octaves = 5
-	--		lib_mg_continental.mg_noise_persist = 0.5
-	--	end
-	--end	
+	if lib_mg_continental.mg_world_scale < 1 then
+		if lib_mg_continental.mg_world_scale >= 0.1 then
+			lib_mg_continental.mg_noise_octaves = 5
+			lib_mg_continental.mg_noise_persist = 0.5
+		else
+			lib_mg_continental.mg_noise_octaves = 5
+			lib_mg_continental.mg_noise_persist = 0.5
+		end
+	end	
 	
 --##		--729	--358	--31	--29	--43	--17	--330	--83
 --##
